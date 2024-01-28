@@ -80,8 +80,44 @@ public class JokeConstructorController : MonoBehaviour
         noun.text = currentNoun;
     }
 
-    public void SetNouns(List<string> nouns)
+    public void SetCorrectAnswers(AnswerResult result)
     {
+        if(result.IsCorrectTheme)
+        {
+            upTheme.interactable= false;
+            downTheme.interactable= false;
+            theme.color = Color.green;
+        }
+        if(result.IsCorrectGenre)
+        {
+            upGenre.interactable= false;
+            downTheme.interactable= false;
+            genre.color = Color.green;
+        }
+        if(result.IsCorrectNoun)
+        {
+            upNoun.interactable= false;
+            downNoun.interactable= false;
+            noun.color = Color.green;
+        }
+    }
+
+    public void ResetStatus()
+    {
+        upTheme.interactable = true;
+        downTheme.interactable = true;
+        upGenre.interactable = true;
+        downTheme.interactable = true;
+        upNoun.interactable = true;
+        downNoun.interactable = true;
+        theme.color = Color.black;
+        genre.color = Color.black;
+        noun.color = Color.black;
+    }
+
+    public void SetNouns(List<string> nouns)
+    {        
+        ResetStatus();
         characterNouns = new List<string>(nouns);
         currentNoun = characterNouns[0];
         RefresUI();

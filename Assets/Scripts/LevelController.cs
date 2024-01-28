@@ -10,12 +10,18 @@ public class LevelController : MonoBehaviour
     private int currentCharacter;
 
     [SerializeField] private List<CharacterData> scriptables;
-    private AnswerResult[] results;
-    
+    private AnswerResult[] results = new AnswerResult[3];
 
+    private JokeConstructorController jokeConstructor;
+
+    
     public void ShuffleList()
     {
         scriptables.Shuffle();
+        if(jokeConstructor ==null)
+        {
+            jokeConstructor = FindObjectOfType<JokeConstructorController>();
+        }
     }
 
     public void GetNextCharacter()
@@ -47,6 +53,7 @@ public class LevelController : MonoBehaviour
         };
 
         UIManager.Instance.ShowJokeResult(result);
+        jokeConstructor.SetCorrectAnswers(result);
 
         if((result.IsCorrectNoun && result.IsCorrectGenre && result.IsCorrectTheme )|| currentTry == numberOfTries)
         {
