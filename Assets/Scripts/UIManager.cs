@@ -24,11 +24,6 @@ public class UIManager : MonoBehaviour
     [Header("UI Score elements")]
     [SerializeField] private RectTransform papers;
 
-    internal void SetCurrentCharacter(CharacterData characterData)
-    {
-        //TODO:Setupear la UI
-    }
-
     [SerializeField] private UIState currentUIState;
     public static UIManager Instance;
 
@@ -67,6 +62,7 @@ public class UIManager : MonoBehaviour
         screens[index].SetActive(true);
     }
 
+
     #region UI Menu
     private void EnterMenu() 
     {
@@ -95,6 +91,11 @@ public class UIManager : MonoBehaviour
     public void SetGameplayInitialInfo(CharacterData data) 
     {
         
+    }
+
+    internal void ShowJokeResult(AnswerResult result)
+    {
+        throw new NotImplementedException();
     }
     #endregion
 
