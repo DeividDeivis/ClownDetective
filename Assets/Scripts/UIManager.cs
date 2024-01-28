@@ -93,9 +93,15 @@ public class UIManager : MonoBehaviour
         
     }
 
-    internal void ShowJokeResult(AnswerResult result)
+
+    public void ShowJokeResult(AnswerResult result)
     {
-        throw new NotImplementedException();
+
+    }
+
+    public void SetGameResult(AnswerResult[] gameResults)
+    {
+
     }
     #endregion
 

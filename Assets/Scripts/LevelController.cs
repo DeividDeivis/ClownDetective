@@ -7,14 +7,10 @@ public class LevelController : MonoBehaviour
     [SerializeField] private int numberOfTries;
     
     private int currentTry;
-    private int correctAnswers;
     private int currentCharacter;
 
-    private int correctAnswer1;
-    private int correctAnswer2;
-    private int correctAnswer3;
-
-    [SerializeField] private List<CharacterData> scriptables; 
+    [SerializeField] private List<CharacterData> scriptables;
+    private AnswerResult[] results;
     
 
     public void ShuffleList()
@@ -25,12 +21,12 @@ public class LevelController : MonoBehaviour
     public void GetNextCharacter()
     {
         currentTry = 0;
-        correctAnswers = 0;
 
         currentCharacter++;
         UIManager.Instance.SetGameplayInitialInfo(scriptables[currentCharacter]);
         if(currentCharacter>= scriptables.Count)
         {
+            UIManager.Instance.SetGameResult(results);
             GameManager.Instance.NextState();
             currentCharacter= 0;
         }
@@ -40,34 +36,18 @@ public class LevelController : MonoBehaviour
     public void ProcessAnswer(JokeTheme answer1, JokeGenre answer2, string answer3)
     {
         currentTry++;
-        correctAnswers = 0;
-        AnswerResult result = new AnswerResult();
-        if(answer1 == scriptables[currentCharacter].CorrectJokeTheme)
+        AnswerResult result = new()
         {
-            correctAnswers++;
-            result.IsCorrectTheme = true;
-        }
-        if(answer2== scriptables[currentCharacter].CorrectJokeGenre)
-        {
-            correctAnswers++;
-            result.IsCorrectGenre = true;
-        }
-        if(answer3== scriptables[currentCharacter].CorrectNoun)
-        {
-            correctAnswers++;
-            result.IsCorrectNoun = true;
-        }
+            IsCorrectTheme = answer1 == scriptables[currentCharacter].CorrectJokeTheme,
+            IsCorrectGenre = answer2 == scriptables[currentCharacter].CorrectJokeGenre,
+            IsCorrectNoun = answer3 == scriptables[currentCharacter].CorrectNoun
+        };
 
         UIManager.Instance.ShowJokeResult(result);
 
-        if(correctAnswers ==3)
+        if((result.IsCorrectNoun && result.IsCorrectGenre && result.IsCorrectTheme )|| currentTry == numberOfTries)
         {
-            GetNextCharacter();
-            return;
-        }
-
-        if(currentTry==numberOfTries)
-        {
+            results[currentCharacter] = result;
             GetNextCharacter();
         }
         
