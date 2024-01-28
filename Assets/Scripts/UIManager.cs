@@ -101,8 +101,8 @@ public class UIManager : MonoBehaviour
     #region UI Gameplay
     private void EnterGameplay() 
     {
-        playerImg.rectTransform.localPosition = new Vector2(-1145, -290);
-        npcImg.rectTransform.localPosition = new Vector2(1370, -241);
+        playerImg.rectTransform.localPosition = new Vector2(-1145, 0);
+        npcImg.rectTransform.localPosition = new Vector2(1370, 0);
         FileData.GetComponent<RectTransform>().localPosition = new Vector2(0, 900);
     }
 
@@ -115,6 +115,9 @@ public class UIManager : MonoBehaviour
 
         FileData.SetFileInfo(currentData);
         npcImg.sprite = currentData.Normal;
+
+        playerImg.rectTransform.localPosition = new Vector2(-1145, -290);
+        npcImg.rectTransform.localPosition = new Vector2(1370, -241);
 
         StartCoroutine(StartGameplayAnim());
     }
