@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    [SerializeField] private JokeConstructorController jokeController;
     [SerializeField] private List<GameObject> screens;
     private Sequence animSequence;
     private CharacterData currentData;
@@ -119,6 +120,7 @@ public class UIManager : MonoBehaviour
         playerImg.rectTransform.localPosition = new Vector2(-1145, -290);
         npcImg.rectTransform.localPosition = new Vector2(1370, -241);
 
+        jokeController.SetNouns(currentData.Nouns);
         StartCoroutine(StartGameplayAnim());
     }
 
