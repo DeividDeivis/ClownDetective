@@ -25,6 +25,6 @@ public class MenuState : State
  
     private void ToNextState()
     {
-        GameManager.Instance.ChangeState();        
+        UIManager.Instance.ExitUIScreen(GameManager.Instance.ChangeState);   
     }
 }

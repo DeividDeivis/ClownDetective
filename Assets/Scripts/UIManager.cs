@@ -2,7 +2,6 @@ using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Xml.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,12 +13,12 @@ public class UIManager : MonoBehaviour
 
     [Header("UI Menu elements")]
     [SerializeField] private TextMeshProUGUI titleImg;
-    [SerializeField] private Button playBtn;
+    [SerializeField] private Image playBtn;
 
     [Header("UI Gameplay elements")]
     [SerializeField] private Image playerImg;
     [SerializeField] private Image npcImg;
-    [SerializeField] private List<Image> playerLifes;
+    [SerializeField] private TextMeshProUGUI playerLifes;
 
     [Header("UI Score elements")]
     [SerializeField] private RectTransform papers;
@@ -62,18 +61,34 @@ public class UIManager : MonoBehaviour
         screens[index].SetActive(true);
     }
 
+    public void ExitUIScreen(Action onComplete = null) 
+    {
+        StartCoroutine(ExitAnim(onComplete));
+    }
+
+    private IEnumerator ExitAnim(Action onComplete = null) 
+    {
+        animSequence.PlayBackwards();
+        yield return new WaitForSeconds(animSequence.Duration());
+        onComplete?.Invoke();
+    }
 
     #region UI Menu
     private void EnterMenu() 
     {
-        animSequence = DOTween.Sequence()
-            .Append(ScaleAnim(titleImg.rectTransform, Vector3.one * 1.1f, .7f).SetEase(Ease.Linear))
-            .Join(FadeAnim(titleImg.rectTransform, .5f).SetEase(Ease.Linear))
-            .Append(ScaleAnim(titleImg.rectTransform, Vector3.one, .3f).SetEase(Ease.Linear));
-    }
-    private void ExitMenu()
-    {
+        titleImg.rectTransform.localScale = Vector3.one * .5f;
+        titleImg.color = new Color(titleImg.color.r, titleImg.color.g, titleImg.color.b, 0f);
+        playBtn.rectTransform.localScale = Vector3.one * .5f;
+        playBtn.color = new Color(playBtn.color.r, playBtn.color.g, playBtn.color.b, 0f);
 
+        animSequence = DOTween.Sequence().SetAutoKill(false)
+            .Append(ScaleAnim(titleImg.rectTransform, Vector3.one * 1.1f, .15f).SetEase(Ease.Linear))
+            .Join(FadeAnim(titleImg.rectTransform, .13f).SetEase(Ease.Linear))
+            .Append(ScaleAnim(titleImg.rectTransform, Vector3.one, .15f).SetEase(Ease.Linear))
+
+            .Append(ScaleAnim(playBtn.GetComponent<RectTransform>(), Vector3.one * 1.1f, .15f).SetEase(Ease.Linear))
+            .Join(FadeAnim(playBtn.GetComponent<RectTransform>(), .13f).SetEase(Ease.Linear))
+            .Append(ScaleAnim(playBtn.GetComponent<RectTransform>(), Vector3.one, .15f).SetEase(Ease.Linear));
     }
     #endregion
 
@@ -83,23 +98,17 @@ public class UIManager : MonoBehaviour
 
     }
 
-    private void ExitGameplay()
-    {
-
-    }
-
-    public void SetGameplayInitialInfo(CharacterData data) 
+    public void SetGameplayInitialInfo(CharacterData data) // On Start Level
     {
         
     }
 
-
-    public void ShowJokeResult(AnswerResult result)
+    public void ShowJokeResult(AnswerResult result) // On Finish Round
     {
 
     }
 
-    public void SetGameResult(AnswerResult[] gameResults)
+    public void SetGameResult(AnswerResult[] gameResults) // On Game Finish
     {
 
     }
@@ -108,10 +117,6 @@ public class UIManager : MonoBehaviour
     #region UI Score
     private void EnterScore() 
     { 
-
-    }
-    private void ExitScore()
-    {
 
     }
     #endregion
