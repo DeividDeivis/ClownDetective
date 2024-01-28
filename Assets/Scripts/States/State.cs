@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class State : MonoBehaviour
 {
-    protected GameManager controller;
+    //protected GameManager controller;
     //protected UIController ui;
     
     public abstract void OnEnter();
