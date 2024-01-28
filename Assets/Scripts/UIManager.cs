@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Linq;
@@ -22,6 +23,11 @@ public class UIManager : MonoBehaviour
 
     [Header("UI Score elements")]
     [SerializeField] private RectTransform papers;
+
+    internal void SetCurrentCharacter(CharacterData characterData)
+    {
+        //TODO:Setupear la UI
+    }
 
     [SerializeField] private UIState currentUIState;
     public static UIManager Instance;

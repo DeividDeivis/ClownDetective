@@ -28,6 +28,7 @@ public class LevelController : MonoBehaviour
         correctAnswers = 0;
 
         currentCharacter++;
+        UIManager.Instance.SetCurrentCharacter(scriptables[currentCharacter]);
         if(currentCharacter>= scriptables.Count)
         {
             GameManager.Instance.NextState();
@@ -35,7 +36,8 @@ public class LevelController : MonoBehaviour
         }
     }
 
-    public void ProcessAnswer(int answer1, int answer2, int answer3)
+    
+    public void ProcessAnswer(JokeTheme answer1, JokeGenre answer2, string answer3)
     {
         currentTry++;
         correctAnswers = 0;
