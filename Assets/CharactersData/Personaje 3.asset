@@ -29,5 +29,5 @@ MonoBehaviour:
   Smile: {fileID: 21300000, guid: 35c9bbbf2a6f8684f8410d693a26c126, type: 3}
   Laugh: {fileID: 21300000, guid: a4c3af35f616f33458c385632e79daa0, type: 3}
   CorrectJokeTheme: 0
-  CorrectJokeGenre: 0
+  CorrectJokeGenre: 1
   CorrectNoun: Delfines
