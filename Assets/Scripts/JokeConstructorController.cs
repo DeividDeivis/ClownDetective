@@ -107,7 +107,7 @@ public class JokeConstructorController : MonoBehaviour
         upTheme.interactable = true;
         downTheme.interactable = true;
         upGenre.interactable = true;
-        downTheme.interactable = true;
+        downGenre.interactable = true;
         upNoun.interactable = true;
         downNoun.interactable = true;
         theme.color = Color.black;

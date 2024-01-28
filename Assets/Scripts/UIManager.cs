@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -27,6 +28,7 @@ public class UIManager : MonoBehaviour
 
     [Header("UI Score elements")]
     [SerializeField] private RectTransform papers;
+    [SerializeField] private TextMeshProUGUI perfromanceScoreTMP;
 
     [SerializeField] private UIState currentUIState;
     public static UIManager Instance;
@@ -161,7 +163,15 @@ public class UIManager : MonoBehaviour
 
     public void SetGameResult(AnswerResult[] gameResults) // On Game Finish
     {
-
+        float score = 0;
+        foreach(AnswerResult result in gameResults)
+        {
+            if(result.IsCorrectGenre && result.IsCorrectNoun && result.IsCorrectTheme)
+            {
+                score += (100f / 3f) * ((4-result.tryNumber) / 3f);
+            }
+        }
+        perfromanceScoreTMP.text = Mathf.Round(score).ToString()+"%";
     }
     #endregion
 

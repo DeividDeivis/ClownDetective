@@ -31,12 +31,12 @@ public class LevelController : MonoBehaviour
         if(currentCharacter>= scriptables.Count)
         {
             UIManager.Instance.SetGameResult(results);
-            currentCharacter= 0;
-            UIManager.Instance.ExitUIScreen(()=>GameManager.Instance.NextState());
+            UIManager.Instance.ExitUIScreen(() => GameManager.Instance.ChangeState());
+            currentCharacter = 0;            
         }
         else
         {
-            if(currentCharacter > 1)
+            if (currentCharacter > 1)
                 UIManager.Instance.ExitUIScreen(() => UIManager.Instance.SetGameplayInitialInfo(scriptables[currentCharacter]));
             else
                 UIManager.Instance.SetGameplayInitialInfo(scriptables[currentCharacter]);
@@ -52,7 +52,8 @@ public class LevelController : MonoBehaviour
         {
             IsCorrectTheme = answer1 == scriptables[currentCharacter].CorrectJokeTheme,
             IsCorrectGenre = answer2 == scriptables[currentCharacter].CorrectJokeGenre,
-            IsCorrectNoun = answer3 == scriptables[currentCharacter].CorrectNoun
+            IsCorrectNoun = answer3 == scriptables[currentCharacter].CorrectNoun,
+            tryNumber = currentTry
         };
 
         UIManager.Instance.ShowJokeResult(result);
@@ -73,4 +74,5 @@ public struct AnswerResult
     public bool IsCorrectTheme;
     public bool IsCorrectGenre;
     public bool IsCorrectNoun;
+    public int tryNumber;
 }
