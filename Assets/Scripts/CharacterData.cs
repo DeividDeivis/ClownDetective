@@ -27,20 +27,20 @@ public class CharacterData : ScriptableObject
 [System.Serializable]
 public enum JokeTheme
 {
-    Politics,
-    Job,
-    Health,
-    Economy,
+    Politica,
+    Trabajo,
+    Salud,
+    Economia,
     Religion,
-    PR,
+    Familia,
 }
 [System.Serializable]
 public enum JokeGenre
 {
-    Humor_negro,
-    Humor_irreverente,
-    Humor_inteligente,
-    Humor_absurdo,
-    Humor_fisico,
-    Dad_joke
+    negro,
+    irreverente,
+    inteligente,
+    absurdo,
+    fisico,
+    DadJoke
 }

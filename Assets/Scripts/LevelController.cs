@@ -31,7 +31,7 @@ public class LevelController : MonoBehaviour
         else
         {
             UIManager.Instance.SetGameplayInitialInfo(scriptables[currentCharacter]);
-            currentCharacter++;
+            
         }
     }
 
@@ -51,6 +51,7 @@ public class LevelController : MonoBehaviour
         if((result.IsCorrectNoun && result.IsCorrectGenre && result.IsCorrectTheme )|| currentTry == numberOfTries)
         {
             results[currentCharacter] = result;
+            currentCharacter++;
             GetNextCharacter();
         }
         
