@@ -12,16 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b63d9fa6d09d72b4dbf90c9c18235e96, type: 3}
   m_Name: Personaje 2
   m_EditorClassIdentifier: 
-  Name: Sofia
-  Age: 32
-  Occupation: Condatoda
+  Name: "Pepe P\xE9rez Pedroso"
+  Age: 29
+  Occupation: Programador
+  Description: "Es un programador de oficina explotado por su jefe, se quebr\xF3
+    el cuello y a\xFAn sigue trabajando. Su pasado lo atormenta ya que su sue\xF1o
+    era ser pintor pero sus padres lo obligaron a ser programador. Hace poco se enamor\xF3
+    de una chica pero esta puso en pareja con un pintor pretencioso. Vive posteando
+    las mismas fotos de gatos bailando todo el d\xEDa.  "
   Nouns:
-  - Excel
-  - Afip
-  - Perro
-  Normal: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-  Smile: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  Laugh: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  CorrectJokeTheme: 0
-  CorrectJokeGenre: 0
-  CorrectNoun: Afip
+  - Jefe
+  - Pintor
+  - Padres
+  npcFolder: {fileID: 21300000, guid: 45a20f395d6a8eb42a1bf2af00901ef8, type: 3}
+  Normal: {fileID: 21300000, guid: 09a748de1404d1e4fabde902121d450d, type: 3}
+  Smile: {fileID: 21300000, guid: 7d1018727cdb1414e9bead7278f0f6f9, type: 3}
+  Laugh: {fileID: 21300000, guid: e219edb0c035405489fb8dd6b2b652d2, type: 3}
+  CorrectJokeTheme: 1
+  CorrectJokeGenre: 3
+  CorrectNoun: Jefe

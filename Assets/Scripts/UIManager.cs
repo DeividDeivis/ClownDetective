@@ -4,7 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -17,18 +16,22 @@ public class UIManager : MonoBehaviour
     [Header("UI Menu elements")]
     [SerializeField] private TextMeshProUGUI titleImg;
     [SerializeField] private Image playBtn;
+    [SerializeField] private Image creditsBtn;
 
     [Header("UI Gameplay elements")]
     [SerializeField] private Image playerImg;
     [SerializeField] private Image npcImg;
     [SerializeField] private TextMeshProUGUI playerAttempts;
     [SerializeField] private FileInfoController FileData;
-    [SerializeField] private Image dialog;
+    //[SerializeField] private Image dialog;
+    [SerializeField] private Image npcFolder;
     private int Attempts = 1;
 
     [Header("UI Score elements")]
     [SerializeField] private RectTransform papers;
     [SerializeField] private TextMeshProUGUI perfromanceScoreTMP;
+    [SerializeField] private Image starsFillamount;
+    private float finalScore;
 
     [SerializeField] private UIState currentUIState;
     public static UIManager Instance;
@@ -89,6 +92,8 @@ public class UIManager : MonoBehaviour
         titleImg.color = new Color(titleImg.color.r, titleImg.color.g, titleImg.color.b, 0f);
         playBtn.rectTransform.localScale = Vector3.one * .5f;
         playBtn.color = new Color(playBtn.color.r, playBtn.color.g, playBtn.color.b, 0f);
+        creditsBtn.rectTransform.localScale = Vector3.one * .5f;
+        creditsBtn.color = new Color(playBtn.color.r, playBtn.color.g, playBtn.color.b, 0f);
 
         animSequence = DOTween.Sequence().SetAutoKill(false)
             .Append(ScaleAnim(titleImg.rectTransform, Vector3.one * 1.1f, .15f).SetEase(Ease.Linear))
@@ -97,7 +102,11 @@ public class UIManager : MonoBehaviour
 
             .Append(ScaleAnim(playBtn.GetComponent<RectTransform>(), Vector3.one * 1.1f, .15f).SetEase(Ease.Linear))
             .Join(FadeAnim(playBtn.GetComponent<RectTransform>(), .13f).SetEase(Ease.Linear))
-            .Append(ScaleAnim(playBtn.GetComponent<RectTransform>(), Vector3.one, .15f).SetEase(Ease.Linear));
+            .Append(ScaleAnim(playBtn.GetComponent<RectTransform>(), Vector3.one, .15f).SetEase(Ease.Linear))
+
+            .Append(ScaleAnim(creditsBtn.GetComponent<RectTransform>(), Vector3.one * 1.1f, .15f).SetEase(Ease.Linear))
+            .Join(FadeAnim(creditsBtn.GetComponent<RectTransform>(), .13f).SetEase(Ease.Linear))
+            .Append(ScaleAnim(creditsBtn.GetComponent<RectTransform>(), Vector3.one, .15f).SetEase(Ease.Linear));
     }
     #endregion
 
@@ -106,7 +115,7 @@ public class UIManager : MonoBehaviour
     {
         playerImg.rectTransform.localPosition = new Vector2(-1145, 0);
         npcImg.rectTransform.localPosition = new Vector2(1370, 0);
-        FileData.GetComponent<RectTransform>().localPosition = new Vector2(0, 900);
+        FileData.GetComponent<RectTransform>().localPosition = new Vector2(-175, 1200);
     }
 
     public void SetGameplayInitialInfo(CharacterData data) // On Start Level
@@ -118,9 +127,11 @@ public class UIManager : MonoBehaviour
 
         FileData.SetFileInfo(currentData);
         npcImg.sprite = currentData.Normal;
+        npcFolder.sprite = currentData.npcFolder;
 
         playerImg.rectTransform.localPosition = new Vector2(-1145, 0);
         npcImg.rectTransform.localPosition = new Vector2(1370, 0);
+        jokeController.GetComponent<RectTransform>().localPosition = new Vector2(0, -686);
 
         jokeController.SetNouns(currentData.Nouns);
         StartCoroutine(StartGameplayAnim());
@@ -129,7 +140,7 @@ public class UIManager : MonoBehaviour
     private IEnumerator StartGameplayAnim()
     {
         FromAnim(playerImg.rectTransform, new Vector2(-700, 0), .3f).SetEase(Ease.Linear);
-        FromAnim(npcImg.rectTransform, new Vector2(756, 0), .3f).SetEase(Ease.Linear);
+        FromAnim(npcImg.rectTransform, new Vector2(686, 0), .3f).SetEase(Ease.Linear);
         yield return new WaitForSeconds(3);
         FromAnim(playerImg.rectTransform, new Vector2(-1145, 0), .3f).SetEase(Ease.Linear);
         FromAnim(npcImg.rectTransform, new Vector2(1370, 0), .3f).SetEase(Ease.Linear);
@@ -139,30 +150,32 @@ public class UIManager : MonoBehaviour
         playerImg.rectTransform.localPosition = new Vector2(-1145, -290);
         npcImg.rectTransform.localPosition = new Vector2(1370, -241);
         animSequence = DOTween.Sequence().SetAutoKill(false)
-            .Append(FadeAnim(playerImg.rectTransform, .3f))
-            .Join(FadeAnim(npcImg.rectTransform, .3f))
+            .Append(FadeAnim(playerImg.rectTransform, .3f).SetEase(Ease.Linear))
+            .Join(FadeAnim(npcImg.rectTransform, .3f).SetEase(Ease.Linear))
             .Append(FromAnim(playerImg.rectTransform, new Vector2(-700, -290), .3f).SetEase(Ease.Linear))
-            .Join(FromAnim(npcImg.rectTransform, new Vector2(756, -241), .3f).SetEase(Ease.Linear))
-            .Append(FromAnim(FileData.GetComponent<RectTransform>(), new Vector2(0, 60), .3f));
+            .Join(FromAnim(npcImg.rectTransform, new Vector2(686, -241), .3f).SetEase(Ease.Linear))
+            .Append(FromAnim(FileData.GetComponent<RectTransform>(), new Vector2(-175, 110), .3f).SetEase(Ease.Linear))
+            .Append(FromAnim(jokeController.GetComponent<RectTransform>(), new Vector2(0, -420), .3f).SetEase(Ease.Linear));
     }
 
     public void ShowJokeResult(AnswerResult result) // On Finish Round
-    {
-        if(result.IsCorrectTheme && result.IsCorrectGenre && result.IsCorrectNoun)
-            npcImg.sprite = currentData.Laugh;
-        else if(result.IsCorrectTheme || result.IsCorrectGenre || result.IsCorrectNoun)
-            npcImg.sprite = currentData.Smile;
-        else if (!result.IsCorrectTheme || !result.IsCorrectGenre || !result.IsCorrectNoun) 
+    {      
+        if (!result.IsCorrectTheme || !result.IsCorrectGenre || !result.IsCorrectNoun) 
         {
             Attempts++;
             Attempts = Mathf.Clamp(Attempts, 1, 3);
-        }            
-       
+        }
+        if (result.IsCorrectTheme || result.IsCorrectGenre || result.IsCorrectNoun)
+            npcImg.sprite = currentData.Smile;
+        if (result.IsCorrectTheme && result.IsCorrectGenre && result.IsCorrectNoun)
+            npcImg.sprite = currentData.Laugh;
+
         playerAttempts.text = $"Intento {Attempts}/3";
     }
 
     public void SetGameResult(AnswerResult[] gameResults) // On Game Finish
     {
+        starsFillamount.fillAmount = 0;
         float score = 0;
         foreach(AnswerResult result in gameResults)
         {
@@ -171,14 +184,36 @@ public class UIManager : MonoBehaviour
                 score += (100f / 3f) * ((4-result.tryNumber) / 3f);
             }
         }
-        perfromanceScoreTMP.text = Mathf.Round(score).ToString()+"%";
+        finalScore = Mathf.Round(score);       
+    }
+
+    private IEnumerator ScoreInGame(float finalscore)
+    {
+        yield return new WaitForSeconds(2);
+
+        starsFillamount.DOFillAmount(finalscore / 100f, 2);
+
+        float lerp = 0f, duration = 2f;
+        int startScore = 0;
+        float scoreTo = finalscore;
+
+        while (lerp < 1)
+        {
+            lerp += Time.deltaTime / duration;
+            perfromanceScoreTMP.text = $"{(int)Mathf.Lerp(startScore, scoreTo, lerp)}%";
+            yield return null;
+        }
     }
     #endregion
 
     #region UI Score
     private void EnterScore() 
-    { 
+    {
+        papers.localPosition = new Vector2(-88, 970);
 
+        animSequence = DOTween.Sequence().SetAutoKill(false)
+            .Append(FromAnim(papers, new Vector2(-88, 110), .3f).SetEase(Ease.Linear))
+            .OnComplete(()=> StartCoroutine(ScoreInGame(finalScore)));
     }
     #endregion
 

@@ -15,18 +15,19 @@ MonoBehaviour:
   Name: "Manolo Jim\xE9nez"
   Age: 51
   Occupation: Desempleado
-  Description: "Lo despidieron de Humor S.A, era buen esp\xEDa pero no hac\xEDa re\xEDr
-    a muchos. Vivi\xF3 trabajando de humorista (nunca le fue bien). Le gustaban los
-    chistes de su abuela, los contaba en la escuela pero se le re\xEDan de \xE9l
-    por ridiculo. Siempre contuvo su risa a partir de eso."
+  Description: "-Lo despidieron de Humor S.A. Fu\xE9 buen esp\xEDa pero no hac\xEDa
+    re\xEDr a muchos. Vivi\xF3 trabajando de humorista (nunca le fue bien financieramente
+    pero se entretiene). Le gustaban los chistes de su abuela, los contaba en la
+    escuela pero se le re\xEDan de \xE9l por rid\xEDculo. Siempre contuvo su risa
+    a partir de eso. Muchos de hartan de sus repetitivos chistes sobre comida."
   Nouns:
   - Abuela
-  - Espia
   - Escuela
-  Picture: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  - Empanadas
+  npcFolder: {fileID: 21300000, guid: 19428871646a81845ae53bb3cbc5a284, type: 3}
   Normal: {fileID: 21300000, guid: feb603d884b086546974225a3e91a661, type: 3}
   Smile: {fileID: 21300000, guid: 32a253f0fbc80ba48aa93a9f17b1e1e2, type: 3}
   Laugh: {fileID: 21300000, guid: 936b347126a7fb84fa6312518e317298, type: 3}
-  CorrectJokeTheme: 1
+  CorrectJokeTheme: 3
   CorrectJokeGenre: 5
-  CorrectNoun: Escuela
+  CorrectNoun: Empanadas

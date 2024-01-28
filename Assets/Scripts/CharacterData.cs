@@ -12,7 +12,7 @@ public class CharacterData : ScriptableObject
     [TextArea(3, 5)]public string Description;
     public List<string> Nouns;
 
-    public Sprite Picture;
+    public Sprite npcFolder;
 
     public Sprite Normal;
     public Sprite Smile;

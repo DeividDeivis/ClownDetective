@@ -215,6 +215,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &688057453 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6591652057843759124, guid: 99893ebc94dd19047bb9df93ccd7ff10, type: 3}
+  m_PrefabInstance: {fileID: 944861802098963451}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &721613916 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8233233324237513567, guid: 99893ebc94dd19047bb9df93ccd7ff10, type: 3}
+  m_PrefabInstance: {fileID: 944861802098963451}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1015455492 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 625996973672240367, guid: 99893ebc94dd19047bb9df93ccd7ff10, type: 3}
@@ -234,10 +250,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5169717692018594423, guid: ea68e06c92d8cf441b1587686d8a1580, type: 3}
-      propertyPath: scriptables.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5821622290527453644, guid: ea68e06c92d8cf441b1587686d8a1580, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -456,6 +468,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99893ebc94dd19047bb9df93ccd7ff10, type: 3}
+--- !u!114 &944861802098963454 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5982019479713905856, guid: 99893ebc94dd19047bb9df93ccd7ff10, type: 3}
+  m_PrefabInstance: {fileID: 944861802098963451}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8203497780557604243
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -468,6 +491,18 @@ PrefabInstance:
       propertyPath: playButton
       value: 
       objectReference: {fileID: 1015455492}
+    - target: {fileID: 928823919125239626, guid: be09cca674021ab40a5b3dfa1027dbfd, type: 3}
+      propertyPath: creditsButton
+      value: 
+      objectReference: {fileID: 944861802098963454}
+    - target: {fileID: 928823919125239626, guid: be09cca674021ab40a5b3dfa1027dbfd, type: 3}
+      propertyPath: creditsScreen
+      value: 
+      objectReference: {fileID: 688057453}
+    - target: {fileID: 928823919125239626, guid: be09cca674021ab40a5b3dfa1027dbfd, type: 3}
+      propertyPath: backFromCredits
+      value: 
+      objectReference: {fileID: 721613916}
     - target: {fileID: 3392737411978002239, guid: be09cca674021ab40a5b3dfa1027dbfd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

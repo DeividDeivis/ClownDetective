@@ -12,16 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b63d9fa6d09d72b4dbf90c9c18235e96, type: 3}
   m_Name: Personaje 3
   m_EditorClassIdentifier: 
-  Name: Jose
-  Age: 48
-  Occupation: Panadero
+  Name: Bartolomeo Fucho
+  Age: 40
+  Occupation: Ex Marinero
+  Description: "Fumador compulsivo (le falta un pulm\xF3n y apenas puede respirar).
+    Ex-Soldado de la marina de su pa\xEDs. Un poco p\xEDcaro, manipulador y competitivo.
+    Su adicci\xF3n al cigarrillo comenz\xF3 en los viajes en barco para calmar su
+    estr\xE9s por miedo a los delfines. No se r\xEDe de nada para no mostrar debilidad
+    ante sus oponentes."
   Nouns:
-  - Pan
-  - Auto
-  - Ventana
-  Normal: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-  Smile: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  Laugh: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  - Cigarillo
+  - Delfines
+  - Barco
+  npcFolder: {fileID: 21300000, guid: a4cebb85c25db0a4dbe2a28380378345, type: 3}
+  Normal: {fileID: 21300000, guid: d35be0ff92efc154a859b42177c62fe3, type: 3}
+  Smile: {fileID: 21300000, guid: 35c9bbbf2a6f8684f8410d693a26c126, type: 3}
+  Laugh: {fileID: 21300000, guid: a4c3af35f616f33458c385632e79daa0, type: 3}
   CorrectJokeTheme: 0
   CorrectJokeGenre: 0
-  CorrectNoun: Ventana
+  CorrectNoun: Delfines

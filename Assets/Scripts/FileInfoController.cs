@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class FileInfoController : MonoBehaviour
 {
-    [SerializeField] private Image npcPicture;
+    [SerializeField] private Image npcFolder;
     [SerializeField] private TextMeshProUGUI npcName;
     [SerializeField] private TextMeshProUGUI npcYears;
     [SerializeField] private TextMeshProUGUI npcJob;
@@ -14,7 +14,7 @@ public class FileInfoController : MonoBehaviour
 
     public void SetFileInfo(CharacterData data) 
     {
-        npcPicture.sprite = data.Picture;
+        npcFolder.sprite = data.npcFolder;
         npcName.text = data.Name;
         npcYears.text = $"Edad: {data.Age}";
         npcJob.text = $"Ocupación: {data.Occupation}";
