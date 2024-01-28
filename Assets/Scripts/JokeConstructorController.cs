@@ -52,7 +52,7 @@ public class JokeConstructorController : MonoBehaviour
     {
         //TODO: Revisar que la adicion y substraccion se hagan en este frame y no en el siguiente
         currentTheme = changingUp ?
-            (currentTheme == 0 ? (int)JokeTheme.Familia : --currentTheme) :
+            (currentTheme == 0 ? (int)JokeTheme.Relaciones : --currentTheme) :
             (currentTheme == 5 ? (int)JokeTheme.Politica : ++currentTheme);
         RefresUI();
     }

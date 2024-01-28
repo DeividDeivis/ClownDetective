@@ -120,6 +120,8 @@ public class UIManager : MonoBehaviour
 
     public void SetGameplayInitialInfo(CharacterData data) // On Start Level
     {
+        playerImg.DOFade(1f, .1f);
+        npcImg.DOFade(1f, .1f);
         currentData = data;
 
         Attempts = 1;
@@ -187,15 +189,15 @@ public class UIManager : MonoBehaviour
         finalScore = Mathf.Round(score);       
     }
 
-    private IEnumerator ScoreInGame(float finalscore)
+    private IEnumerator ScoreInGame()
     {
         yield return new WaitForSeconds(2);
 
-        starsFillamount.DOFillAmount(finalscore / 100f, 2);
+        starsFillamount.DOFillAmount(finalScore / 100f, 2);
 
         float lerp = 0f, duration = 2f;
         int startScore = 0;
-        float scoreTo = finalscore;
+        float scoreTo = finalScore;
 
         while (lerp < 1)
         {
@@ -209,11 +211,14 @@ public class UIManager : MonoBehaviour
     #region UI Score
     private void EnterScore() 
     {
+        perfromanceScoreTMP.text = "0%";
         papers.localPosition = new Vector2(-88, 970);
 
-        animSequence = DOTween.Sequence().SetAutoKill(false)
-            .Append(FromAnim(papers, new Vector2(-88, 110), .3f).SetEase(Ease.Linear))
-            .OnComplete(()=> StartCoroutine(ScoreInGame(finalScore)));
+        FromAnim(papers, new Vector2(-88, 110), .3f).SetEase(Ease.Linear)
+            .OnComplete(()=> StartCoroutine(ScoreInGame()));
+
+        animSequence.Kill();
+        animSequence = null;
     }
     #endregion
 

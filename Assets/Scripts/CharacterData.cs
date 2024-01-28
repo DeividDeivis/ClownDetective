@@ -32,7 +32,7 @@ public enum JokeTheme
     Salud,
     Economia,
     Religion,
-    Familia,
+    Relaciones,
 }
 [System.Serializable]
 public enum JokeGenre

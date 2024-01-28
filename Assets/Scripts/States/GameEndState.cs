@@ -5,18 +5,18 @@ using UnityEngine.UI;
 
 public class GameEndState : State
 {
-    //[SerializeField] private Button menuButton;
+    [SerializeField] private Button menuButton;
 
     public override void OnEnter()
     {
         UIManager.Instance.SetUIState(UIState.Score);
-        //menuButton.interactable = true;
-        //UIManager.Instance.SetUIState(UIState.Score);
-        //menuButton.onClick.AddListener(() =>
-        //{
-        //    ToNextState();
-        //    menuButton.interactable = false;
-        //});
+        menuButton.interactable = true;
+        UIManager.Instance.SetUIState(UIState.Score);
+        menuButton.onClick.AddListener(() =>
+        {
+            ToNextState();
+            menuButton.interactable = false;
+        });
     }
 
     public override void OnUpdate()
@@ -26,11 +26,11 @@ public class GameEndState : State
 
     public override void OnExit()
     {
-        //menuButton.onClick.RemoveAllListeners();
+        menuButton.onClick.RemoveAllListeners();
     }
 
     private void ToNextState()
     {
-        UIManager.Instance.ExitUIScreen(GameManager.Instance.ChangeState);
+        GameManager.Instance.ChangeState();
     }
 }

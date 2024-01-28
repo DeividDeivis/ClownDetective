@@ -31,16 +31,15 @@ public class LevelController : MonoBehaviour
         if(currentCharacter>= scriptables.Count)
         {
             UIManager.Instance.SetGameResult(results);
-            UIManager.Instance.ExitUIScreen(() => GameManager.Instance.ChangeState());
+            UIManager.Instance.ExitUIScreen(GameManager.Instance.ChangeState);   
             currentCharacter = 0;            
         }
         else
         {
-            if (currentCharacter > 1)
+            if (currentCharacter >= 1)
                 UIManager.Instance.ExitUIScreen(() => UIManager.Instance.SetGameplayInitialInfo(scriptables[currentCharacter]));
             else
-                UIManager.Instance.SetGameplayInitialInfo(scriptables[currentCharacter]);
-            
+                UIManager.Instance.SetGameplayInitialInfo(scriptables[currentCharacter]);            
         }
     }
 
