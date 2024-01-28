@@ -1,0 +1,34 @@
+Tematica:
+
+Politica
+Trabajo
+Salud
+Economia
+Religion
+Relaciones personales
+
+Generos:
+
+Humor negro
+Humor irreverente
+Humor inteligente
+Humor adsurdo
+Humor fisico
+Dad show
+
+
+Sustantivos (3) que dependen de cada npc.
+
+Animaciones de UI.
+
+Scriptable de los npc. (3 sprites de estado, nombre, edad, ocupacion, descripcion, tematica ganadora, genero ganador, lista de sustantivos, sustantivo correcto)
+
+Data Manager (contiene los NPCInfo, los mezcla, permite obtener la info del actual, puede cargar el siguiente)
+
+Level Controller (obtiene la data del data manager para cargar la info del nivel y saber si un nivel esta resuelto)
+
+UI Manager (Controla las animaciones de UI, carga la data del npc en pantalla)
+
+Mecanicas:
+
+Ver por cada NPC la info y elegir 3 cartas para armar un chiste, el jugador tiene 3 intentos para poder hacer reir al npc, en cada intento las cartas puestas correctamente son iluminadas de color verde, si el jugador acierta las 3 cartas correctamente pasa al siguiente "level", si no, debe intentar corregir las cartas erroneas para que su siguiente intento sea el correcto.
