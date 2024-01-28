@@ -8,9 +8,14 @@ public class MenuState : State
     [SerializeField] private Button playButton;
    
     public override void OnEnter()
-    {    
+    {
+        playButton.interactable = true;
         UIManager.Instance.SetUIState(UIState.Menu);
-        playButton.onClick.AddListener(ToNextState);
+        playButton.onClick.AddListener(()=>
+        {
+            ToNextState();
+            playButton.interactable = false;
+        });
     }
 
     public override void OnUpdate()
