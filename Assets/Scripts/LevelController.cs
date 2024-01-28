@@ -36,7 +36,10 @@ public class LevelController : MonoBehaviour
         }
         else
         {
-            UIManager.Instance.SetGameplayInitialInfo(scriptables[currentCharacter]);
+            if(currentCharacter > 1)
+                UIManager.Instance.ExitUIScreen(() => UIManager.Instance.SetGameplayInitialInfo(scriptables[currentCharacter]));
+            else
+                UIManager.Instance.SetGameplayInitialInfo(scriptables[currentCharacter]);
             
         }
     }

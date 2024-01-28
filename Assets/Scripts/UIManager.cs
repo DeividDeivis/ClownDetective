@@ -117,8 +117,8 @@ public class UIManager : MonoBehaviour
         FileData.SetFileInfo(currentData);
         npcImg.sprite = currentData.Normal;
 
-        playerImg.rectTransform.localPosition = new Vector2(-1145, -290);
-        npcImg.rectTransform.localPosition = new Vector2(1370, -241);
+        playerImg.rectTransform.localPosition = new Vector2(-1145, 0);
+        npcImg.rectTransform.localPosition = new Vector2(1370, 0);
 
         jokeController.SetNouns(currentData.Nouns);
         StartCoroutine(StartGameplayAnim());
@@ -126,13 +126,19 @@ public class UIManager : MonoBehaviour
 
     private IEnumerator StartGameplayAnim()
     {
-        DOTween.Sequence()
-            .Append(FromAnim(playerImg.rectTransform, new Vector2(-700, 0), .3f).SetEase(Ease.Linear))
-            .Join(FromAnim(npcImg.rectTransform, new Vector2(756, 0), .3f).SetEase(Ease.Linear));
-
+        FromAnim(playerImg.rectTransform, new Vector2(-700, 0), .3f).SetEase(Ease.Linear);
+        FromAnim(npcImg.rectTransform, new Vector2(756, 0), .3f).SetEase(Ease.Linear);
         yield return new WaitForSeconds(3);
-
+        FromAnim(playerImg.rectTransform, new Vector2(-1145, 0), .3f).SetEase(Ease.Linear);
+        FromAnim(npcImg.rectTransform, new Vector2(1370, 0), .3f).SetEase(Ease.Linear);
+        playerImg.DOFade(0f, .3f);
+        npcImg.DOFade(0f, .3f);
+        yield return new WaitForSeconds(1);
+        playerImg.rectTransform.localPosition = new Vector2(-1145, -290);
+        npcImg.rectTransform.localPosition = new Vector2(1370, -241);
         animSequence = DOTween.Sequence().SetAutoKill(false)
+            .Append(FadeAnim(playerImg.rectTransform, .3f))
+            .Join(FadeAnim(npcImg.rectTransform, .3f))
             .Append(FromAnim(playerImg.rectTransform, new Vector2(-700, -290), .3f).SetEase(Ease.Linear))
             .Join(FromAnim(npcImg.rectTransform, new Vector2(756, -241), .3f).SetEase(Ease.Linear))
             .Append(FromAnim(FileData.GetComponent<RectTransform>(), new Vector2(0, 60), .3f));
@@ -140,11 +146,16 @@ public class UIManager : MonoBehaviour
 
     public void ShowJokeResult(AnswerResult result) // On Finish Round
     {
-        if(!result.IsCorrectTheme || !result.IsCorrectGenre || !result.IsCorrectNoun)
-            Attempts = Mathf.Clamp(Attempts++, 1, 3);
-        if (result.IsCorrectTheme || result.IsCorrectGenre || result.IsCorrectNoun)
+        if(result.IsCorrectTheme && result.IsCorrectGenre && result.IsCorrectNoun)
+            npcImg.sprite = currentData.Laugh;
+        else if(result.IsCorrectTheme || result.IsCorrectGenre || result.IsCorrectNoun)
             npcImg.sprite = currentData.Smile;
-
+        else if (!result.IsCorrectTheme || !result.IsCorrectGenre || !result.IsCorrectNoun) 
+        {
+            Attempts++;
+            Attempts = Mathf.Clamp(Attempts, 1, 3);
+        }            
+       
         playerAttempts.text = $"Intento {Attempts}/3";
     }
 
