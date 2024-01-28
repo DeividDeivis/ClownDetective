@@ -5,33 +5,26 @@ using UnityEngine.UI;
 
 public class MenuState : State
 {
-       
-    
-
+    [SerializeField] private Button playButton;
    
     public override void OnEnter()
-    {
-        //TODO Prender UI menu
-
-        
-        
-    }
-
-    public override void OnExit()
-    {        
-        //TODO Apagar UI menu
-        
+    {    
+        UIManager.Instance.SetUIState(UIState.Menu);
+        playButton.onClick.AddListener(ToNextState);
     }
 
     public override void OnUpdate()
     {
-        
+
     }
-    
+
+    public override void OnExit()
+    {
+        playButton.onClick.RemoveAllListeners();
+    }
+ 
     private void ToNextState()
     {
         controller.ChangeState();        
     }
-
-    
 }
