@@ -12,9 +12,14 @@ public class GamePlayState : State
     }
     public override void OnEnter()
     {
-        //TODO prender UI gameplay
+        UIManager.Instance.SetUIState(UIState.Gameplay);
         levelController.ShuffleList();
         levelController.GetNextCharacter();
+    }
+
+    public override void OnUpdate()
+    {
+
     }
 
     public override void OnExit()
@@ -22,14 +27,9 @@ public class GamePlayState : State
         //TODO apagar UI gameplay
     }
 
-    public override void OnUpdate()
-    {
-        
-    }
-
     private void ToNextState()
     {
-        controller.ChangeState();
+        GameManager.Instance.ChangeState();
         
     }
 }

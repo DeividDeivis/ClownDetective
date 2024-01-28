@@ -6,16 +6,16 @@ public class GameEndState : State
 {
     public override void OnEnter()
     {
-        //TODO Prender UI fin del juego
-    }
-
-    public override void OnExit()
-    {
-        //TODO Apagar UI fin del juego
+        UIManager.Instance.SetUIState(UIState.Score);
     }
 
     public override void OnUpdate()
     {
-        
+
     }
+
+    public override void OnExit()
+    {
+        
+    }  
 }

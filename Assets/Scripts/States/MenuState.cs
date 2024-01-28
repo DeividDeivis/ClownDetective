@@ -25,6 +25,6 @@ public class MenuState : State
  
     private void ToNextState()
     {
-        controller.ChangeState();        
+        GameManager.Instance.ChangeState();        
     }
 }
