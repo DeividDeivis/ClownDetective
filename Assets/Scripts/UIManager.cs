@@ -126,7 +126,11 @@ public class UIManager : MonoBehaviour
 
     private IEnumerator StartGameplayAnim()
     {
-        yield return new WaitForSeconds(1);
+        DOTween.Sequence()
+            .Append(FromAnim(playerImg.rectTransform, new Vector2(-700, 0), .3f).SetEase(Ease.Linear))
+            .Join(FromAnim(npcImg.rectTransform, new Vector2(756, 0), .3f).SetEase(Ease.Linear));
+
+        yield return new WaitForSeconds(3);
 
         animSequence = DOTween.Sequence().SetAutoKill(false)
             .Append(FromAnim(playerImg.rectTransform, new Vector2(-700, -290), .3f).SetEase(Ease.Linear))

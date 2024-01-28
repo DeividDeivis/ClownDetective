@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class MenuState : State
 {
     [SerializeField] private Button playButton;
-    [SerializeField] private Button creditsButton;
+    /*[SerializeField] private Button creditsButton;
     [SerializeField] private Button backFromCredits;
-    [SerializeField] private GameObject creditsScreen;
+    [SerializeField] private GameObject creditsScreen;*/
    
     public override void OnEnter()
     {
@@ -20,7 +20,7 @@ public class MenuState : State
             playButton.interactable = false;
         });
 
-        creditsButton.onClick.AddListener(() =>
+        /*creditsButton.onClick.AddListener(() =>
         {
             creditsScreen.SetActive(true);
         });
@@ -28,7 +28,7 @@ public class MenuState : State
         backFromCredits.onClick.AddListener(() =>
         {
             creditsScreen.SetActive(false);
-        });
+        });*/
     }
 
     public override void OnUpdate()
@@ -39,8 +39,8 @@ public class MenuState : State
     public override void OnExit()
     {
         playButton.onClick.RemoveAllListeners();
-        creditsButton.onClick.RemoveAllListeners();
-        backFromCredits.onClick.RemoveAllListeners();
+        /*creditsButton.onClick.RemoveAllListeners();
+        backFromCredits.onClick.RemoveAllListeners();*/
     }
  
     private void ToNextState()
