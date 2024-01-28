@@ -1,14 +1,18 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> screens;
+    private Sequence animSequence;
 
     [Header("UI Menu elements")]
-    [SerializeField] private Image titleImg;
+    [SerializeField] private TextMeshProUGUI titleImg;
     [SerializeField] private Button playBtn;
 
     [Header("UI Gameplay elements")]
@@ -59,11 +63,15 @@ public class UIManager : MonoBehaviour
 
     #region UI Menu
     private void EnterMenu() 
-    { 
-
+    {
+        animSequence = DOTween.Sequence()
+            .Append(ScaleAnim(titleImg.rectTransform, Vector3.one * 1.1f, .7f).SetEase(Ease.Linear))
+            .Join(FadeAnim(titleImg.rectTransform, .5f).SetEase(Ease.Linear))
+            .Append(ScaleAnim(titleImg.rectTransform, Vector3.one, .3f).SetEase(Ease.Linear));
     }
     private void ExitMenu()
     {
+
     }
     #endregion
 
@@ -92,6 +100,31 @@ public class UIManager : MonoBehaviour
     private void ExitScore()
     {
 
+    }
+    #endregion
+
+    #region Animations
+    public static Tween FadeAnim(RectTransform element, float time)
+    {
+        if (element.GetComponent<Image>()) return DOTween.Sequence().Join(element.GetComponent<Image>().DOFade(1, time));
+        else if (element.GetComponent<TextMeshProUGUI>()) return DOTween.Sequence().Append(element.GetComponent<TextMeshProUGUI>().DOFade(1, time));
+        else if (element.GetComponent<CanvasGroup>()) return DOTween.Sequence().Append(element.GetComponent<CanvasGroup>().DOFade(1, time));
+        else return null;
+    }
+
+    public static Tween ScaleAnim(RectTransform element, Vector3 finalScale, float time)
+    {
+        return element.DOScale(finalScale, time);
+    }
+
+    public static Tween FromAnim(RectTransform element, Vector2 finalPos, float time)
+    {
+        return element.DOAnchorPos(finalPos, time);
+    }
+
+    public static Tween FillAmountAnim(RectTransform element, float time)
+    {
+        return element.GetComponent<Image>().DOFillAmount(1, time);
     }
     #endregion
 }
