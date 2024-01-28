@@ -9,9 +9,11 @@ public class CharacterData : ScriptableObject
     public string Name;
     public string Age;
     public string Occupation;
+    [TextArea(3, 5)]public string Description;
     public List<string> Nouns;
 
-    
+    public Sprite Picture;
+
     public Sprite Normal;
     public Sprite Smile;
     public Sprite Laugh;

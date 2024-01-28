@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> screens;
     private Sequence animSequence;
+    private CharacterData currentData;
 
     [Header("UI Menu elements")]
     [SerializeField] private TextMeshProUGUI titleImg;
@@ -18,7 +19,10 @@ public class UIManager : MonoBehaviour
     [Header("UI Gameplay elements")]
     [SerializeField] private Image playerImg;
     [SerializeField] private Image npcImg;
-    [SerializeField] private TextMeshProUGUI playerLifes;
+    [SerializeField] private TextMeshProUGUI playerAttempts;
+    [SerializeField] private FileInfoController FileData;
+    [SerializeField] private Image dialog;
+    private int Attempts = 1;
 
     [Header("UI Score elements")]
     [SerializeField] private RectTransform papers;
@@ -94,18 +98,38 @@ public class UIManager : MonoBehaviour
 
     #region UI Gameplay
     private void EnterGameplay() 
-    { 
-
+    {
+        playerImg.rectTransform.localPosition = new Vector2(-700, -290);
+        npcImg.rectTransform.localPosition = new Vector2(756, -241);
+        FileData.GetComponent<RectTransform>().localPosition = new Vector2(0, 900);
     }
 
     public void SetGameplayInitialInfo(CharacterData data) // On Start Level
     {
-        
+        currentData = data;
+
+        Attempts = 1;
+        playerAttempts.text = $"Intento {Attempts}/3";
+
+        FileData.SetFileInfo(data);
+        npcImg.sprite = data.Normal;
+
+        StartCoroutine(StartGameplayAnim());
+    }
+
+    private IEnumerator StartGameplayAnim()
+    {
+        yield return new WaitForSeconds(1);
     }
 
     public void ShowJokeResult(AnswerResult result) // On Finish Round
     {
+        if(!result.IsCorrectTheme || !result.IsCorrectGenre || !result.IsCorrectNoun)
+            Attempts = Mathf.Clamp(Attempts++, 1, 3);
+        if (result.IsCorrectTheme || result.IsCorrectGenre || result.IsCorrectNoun)
+            npcImg.sprite = currentData.Smile;
 
+        playerAttempts.text = $"Intento {Attempts}/3";
     }
 
     public void SetGameResult(AnswerResult[] gameResults) // On Game Finish
