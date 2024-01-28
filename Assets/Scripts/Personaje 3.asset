@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b63d9fa6d09d72b4dbf90c9c18235e96, type: 3}
   m_Name: Personaje 3
   m_EditorClassIdentifier: 
-  Name: Sofia
-  Age: 32
-  Occupation: Condatoda
+  Name: Jose
+  Age: 48
+  Occupation: Panadero
   Nouns:
-  - Excel
-  - Afip
-  - Perro
+  - Pan
+  - Auto
+  - Ventana
   Normal: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
   Smile: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   Laugh: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  CorrectJokeTheme: 1
-  CorrectJokeGenre: 2
-  CorrectNoun: Afip
+  CorrectJokeTheme: 4
+  CorrectJokeGenre: 0
+  CorrectNoun: Ventana
