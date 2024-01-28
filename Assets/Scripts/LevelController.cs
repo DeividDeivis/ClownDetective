@@ -14,7 +14,7 @@ public class LevelController : MonoBehaviour
     private int correctAnswer2;
     private int correctAnswer3;
 
-    [SerializeField] private List<string> scriptables; //TODO reemplazar por la lista de scriptables posta
+    [SerializeField] private List<CharacterData> scriptables; 
     
 
     public void ShuffleList()
