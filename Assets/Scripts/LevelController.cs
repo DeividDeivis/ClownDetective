@@ -21,8 +21,7 @@ public class LevelController : MonoBehaviour
     public void GetNextCharacter()
     {
         currentTry = 0;
-
-        currentCharacter++;
+     
         if(currentCharacter>= scriptables.Count)
         {
             UIManager.Instance.SetGameResult(results);
@@ -32,6 +31,7 @@ public class LevelController : MonoBehaviour
         else
         {
             UIManager.Instance.SetGameplayInitialInfo(scriptables[currentCharacter]);
+            currentCharacter++;
         }
     }
 

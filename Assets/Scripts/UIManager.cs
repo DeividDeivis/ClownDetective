@@ -75,6 +75,8 @@ public class UIManager : MonoBehaviour
         animSequence.PlayBackwards();
         yield return new WaitForSeconds(animSequence.Duration());
         onComplete?.Invoke();
+        animSequence.Kill();
+        animSequence = null;
     }
 
     #region UI Menu
@@ -99,8 +101,8 @@ public class UIManager : MonoBehaviour
     #region UI Gameplay
     private void EnterGameplay() 
     {
-        playerImg.rectTransform.localPosition = new Vector2(-700, -290);
-        npcImg.rectTransform.localPosition = new Vector2(756, -241);
+        playerImg.rectTransform.localPosition = new Vector2(-1145, -290);
+        npcImg.rectTransform.localPosition = new Vector2(1370, -241);
         FileData.GetComponent<RectTransform>().localPosition = new Vector2(0, 900);
     }
 
@@ -111,8 +113,8 @@ public class UIManager : MonoBehaviour
         Attempts = 1;
         playerAttempts.text = $"Intento {Attempts}/3";
 
-        FileData.SetFileInfo(data);
-        npcImg.sprite = data.Normal;
+        FileData.SetFileInfo(currentData);
+        npcImg.sprite = currentData.Normal;
 
         StartCoroutine(StartGameplayAnim());
     }
@@ -120,6 +122,11 @@ public class UIManager : MonoBehaviour
     private IEnumerator StartGameplayAnim()
     {
         yield return new WaitForSeconds(1);
+
+        animSequence = DOTween.Sequence().SetAutoKill(false)
+            .Append(FromAnim(playerImg.rectTransform, new Vector2(-700, -290), .3f).SetEase(Ease.Linear))
+            .Join(FromAnim(npcImg.rectTransform, new Vector2(756, -241), .3f).SetEase(Ease.Linear))
+            .Append(FromAnim(FileData.GetComponent<RectTransform>(), new Vector2(0, 60), .3f));
     }
 
     public void ShowJokeResult(AnswerResult result) // On Finish Round
