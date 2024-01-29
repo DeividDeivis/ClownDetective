@@ -1365,7 +1365,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7230762420080598100
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2267,7 +2267,7 @@ GameObject:
   - component: {fileID: 5286421461334193901}
   - component: {fileID: 8233233324237513567}
   m_Layer: 5
-  m_Name: Credits
+  m_Name: Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3141,7 +3141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6660641806507617294
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3558,8 +3558,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Arte : DANIEL PEREZ \nArte: SOLO GIAN\nProgramacion: DAVID RUIZ\nProgramacion:
-    MARTIN FERNANDEZ\nProgramacion: PABLO KALAIZICH\n"
+  m_text: "Arte : DANIEL PEREZ \nArte: SOLO GIAN\nMusica: ARY CLEMENTINO\nProgramacion:
+    DAVID RUIZ\nProgramacion: MARTIN FERNANDEZ\nProgramacion: PABLO KALAIZICH\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7a1e9b2a9e128fb4f8f48ec702453f5b, type: 2}
   m_sharedMaterial: {fileID: 7742188256400753230, guid: 7a1e9b2a9e128fb4f8f48ec702453f5b, type: 2}
